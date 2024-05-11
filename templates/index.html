@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Analizador léxico</title>
+</head>
+
+<body>
+
+    <main class="container container_main">
+        <div class="container_file">
+            <p class="title">Carga el archivo txt a analizar</p>
+            <form method="POST" action="/file" enctype="multipart/form-data" class="form_file">
+                <div class="file-input-container">
+                    <input type="file" class="file-input" id="file" name="file" accept=".txt" />
+                    <label for="file" class="custom-file-button">Seleccionar Archivo</label>
+                </div>
+                
+                <button type="submit">Analizar</button>
+            </form>
+
+        </div>
+
+        <div class="container_text">
+            <p class="title">Ingresa el código a analizar</p>
+            <form method="POST" action="/text" enctype="multipart/form-data" class="form_text">
+                <textarea name="code" placeholder="Inserte aquí el código..."></textarea>
+                <button type="submit">Analizar</button>
+            </form>
+        </div>
+
+        <div class="container_tokens">
+            <div class="token">
+                {% for token in tokens %}
+                <p>{{ token.value }}</p>
+                {% endfor %}
+            </div>
+            <div class="reserved">
+                {% for token in tokens %}
+                <p>Linea: {{ token.line }} --- {{ token.reserved }} --- Símbolo: {{token.value}}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+    </main>
+
+</body>
+
+</html>
